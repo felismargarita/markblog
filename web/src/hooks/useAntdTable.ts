@@ -1,25 +1,21 @@
 import useApi from '@/hooks/useApi'
 import {TablePaginationConfig,TableProps} from 'antd/lib/table/index'
 import React, { useEffect, useState } from 'react'
-import {PaginationType,HttpMethodType} from '@/type/BaseTypes'
+import {IPagination,IPaginationData} from '@/types/CommonTypes'
 import {Form} from 'antd'
-interface PaginationData<T> {
-  totalCount:number
-  totalPage:number
-  list:Array<T>
-}
+
 
 const useAntdTable = <T extends {id:number,revision:number}>(tableUrl:string,callbacks?:{
   onDoubleClickRow?:(key:number,row:T)=>void,
   onLoading?:()=>void
   onLoaded?:(dataSource?:T[])=>void
 })=>{
-  const [pagination,setPagination] = useState<PaginationType>({current:1,size:10})
+  const [pagination,setPagination] = useState<IPagination>({current:1,pageSize:10})
   const [selected,setSelected] = useState<{rows:T[],keys:any[]}>({rows:[],keys:[]})
   const [searchForm] = Form.useForm()
-  const tableApi = useApi<PaginationData<T>>({url:tableUrl,method:'POST'},{immediate:false},[tableUrl,pagination])
+  const tableApi = useApi<IPaginationData<T>>({url:tableUrl,method:'POST'},{immediate:false},[tableUrl,pagination])
   const onSearch = ()=>{
-    setPagination({current:1,size:pagination.size})
+    setPagination({current:1,pageSize:pagination.pageSize})
   }
   const {onDoubleClickRow,onLoading,onLoaded} = (callbacks || {})
 
@@ -35,24 +31,24 @@ const useAntdTable = <T extends {id:number,revision:number}>(tableUrl:string,cal
           asc:false
         }
       ]
-    }}).then((res)=>onLoaded?.(res.list)).catch(()=>onLoaded?.())
+    }}).then((res)=>onLoaded?.(res.records)).catch(()=>onLoaded?.())
   },[pagination])
 
   const paginationProps:TablePaginationConfig = {
-    total:tableApi.data?.totalCount,
+    total:tableApi.data?.total,
     size:'small',
     current:pagination.current,
     showTotal:total=>`总共${total}条`,
     showSizeChanger:true,
-    onChange:(current,size)=>setPagination({current,size:size||10}),
-    onShowSizeChange:(current,size)=>setPagination({current:1,size:size||10}),
+    onChange:(current,size)=>setPagination({current,pageSize:size||10}),
+    onShowSizeChange:(current,size)=>setPagination({current:1,pageSize:size||10}),
   }
 
   const tableProps:TableProps<T> = {
     rowKey:'id',
     size:'small',
     scroll:{x:'max-content'},
-    dataSource:tableApi.data?.list,
+    dataSource:tableApi.data?.records,
     loading:tableApi.loading,
     pagination:paginationProps,
     rowSelection:{

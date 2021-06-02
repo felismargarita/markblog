@@ -1,19 +1,36 @@
-import {useState} from 'react'
+import {useEffect} from 'react'
 import ReactMarkdown from 'react-markdown'
 import {Input,Row,Col, Space, Button,Form, message} from 'antd'
 import useApi from '@/hooks/useApi'
+import {IBlog} from '@/types/CommonTypes'
 
-export default ()=>{
+const paper:React.FC<any> = (props)=>{
+  const id = props?.location?.query?.id //文章ID
   const [form] = Form.useForm() 
   const publishAPI = useApi({url:'/blog/add',method:'POST'})
-  const onPublish = async ()=>{
+  const updateAPI = useApi({url:'/blog/update',method:'PUT'})
+  const blogAPI = useApi<IBlog>({url:'/blog/getById',params:{id}})
+  
+  useEffect(()=>{
+    if(id){
+      blogAPI.fetch().then(blog=>{
+        const {title,content} = blog
+        form.setFieldsValue({title,content})
+      })
+    }
+  },[id])
+  const onSubmit = async ()=>{
     const formData = form.getFieldsValue(true)
     const {title} = formData
     if(!title){
       message.warn('请输入标题')
       return
     }
-    await publishAPI.fetch({data:formData})
+    if(id){
+      await updateAPI.fetch({data:{...formData,id}})
+    }else{
+      await publishAPI.fetch({data:formData})
+    }
     message.success('发布成功')
   }
   return (
@@ -28,7 +45,7 @@ export default ()=>{
             <Col span={12}>
               <Space>
                 <Button>保存草稿</Button>
-                <Button type="primary" onClick={onPublish} loading={publishAPI.loading}>发布</Button>
+                <Button type="primary" onClick={onSubmit} loading={publishAPI.loading || updateAPI.loading}>发布</Button>
               </Space>
             </Col>
           </Row>
@@ -56,3 +73,5 @@ export default ()=>{
     </div>
   )
 }
+
+export default paper

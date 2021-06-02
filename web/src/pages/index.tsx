@@ -21,7 +21,7 @@ export default function IndexPage() {
             <div className="blog-title-item" onClick={goLogin}>登陆/注册</div>
           </div>
         </Header>
-        <Content>
+        <Content className="blog-content">
           <Spin spinning={pageBlogAPI.loading}>
             {
               pageBlogAPI.data?.records.map(b=>(

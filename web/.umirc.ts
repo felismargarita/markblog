@@ -11,6 +11,10 @@ export default defineConfig({
       changeOrigin: true
     }
   },
+  locale:{
+    default:'zh-CN',
+    antd:true
+  },
   sass: {
   },
   routes: [
@@ -21,6 +25,10 @@ export default defineConfig({
       path:'/center',
       component:'@/pages/center',
       routes:[
+        {
+          path:'manage',
+          component:'@/pages/manage'
+        },
         {
           path:'paper',
           component:'@/pages/paper'
