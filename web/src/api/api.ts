@@ -1,10 +1,9 @@
 import axios, { AxiosResponse } from 'axios'
-import urls from './urls'
 import {message} from 'antd'
 import sessionUtils from '../utils/sessionUtils'
 import {history} from 'umi'
 const service = axios.create({
-  baseURL: urls.SERVER, // api的base_url,
+  baseURL: '/api', // api的base_url,
   withCredentials:true,
 })
 

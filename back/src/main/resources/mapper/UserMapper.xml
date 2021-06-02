@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.felis.markblogserver.dao.UserDao">
+
+    <resultMap id="userMap" type="com.felis.markblogserver.entity.User">
+        <id column="id" property="id"/>
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="salt" property="salt" />
+        <result column="nickname" property="nickname" />
+        <result column="created_time" property="createdTime" />
+        <result column="updated_time" property="updatedTime" />
+        <result column="created_by" property="createdBy"/>
+        <result column="updated_by" property="updatedBy"/>
+        <result column="is_delete" property="isDelete"/>
+    </resultMap>
+
+    <select id="getUser" parameterType="string" resultMap="userMap">
+         select
+         id,
+         username,
+         password,
+         salt,
+         nickname,
+         created_time,
+         updated_time,
+         created_by,
+         updated_by,
+         is_delete from t_user
+         where username=#{username} and is_delete = 'N'
+    </select>
+
+    <update id="updatePassword" parameterType="com.felis.markblogserver.entity.User">
+        update t_user set password = #{password} where username = #{username} and is_delete = 'N'
+    </update>
+
+
+</mapper>

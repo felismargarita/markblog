@@ -1,0 +1,37 @@
+.preview-card {
+  position: relative;
+  max-height: 300px;
+  overflow: hidden;
+  padding: 8px;
+  border-radius: 4px;
+  background: #fff;
+  .preview-card-title {
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 4px;
+    &:hover {
+      color: $primary-color;
+      transition: all 0.3s;
+    }
+  }
+  .preview-card-footer {
+    position: absolute;
+    background: #fff;
+    opacity: 0.95;
+    width: 100%;
+    bottom: 0;
+    height: 24px;
+    line-height: 24px;
+    display: flex;
+    .preview-card-time {
+      font-size: 12px;
+      margin: 0 12px;
+    }
+    .preview-card-more {
+      font-size: 12px;
+      cursor: pointer;
+      margin: 0 12px;
+    }
+  }
+}

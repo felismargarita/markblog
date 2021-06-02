@@ -4,10 +4,10 @@ import { message } from 'antd'
 
  type httpMethod = 'get'|'GET'|'post'|'POST'|'put'|'PUT'|'delete'|'DELETE'
 export {httpMethod}
-interface axiosProps {
-  method:httpMethod,
+interface AxiosProps {
   url:string,
   params?:object,
+  method?:httpMethod,
   data?:object
 }
 
@@ -19,22 +19,23 @@ interface OutputProps<V=any> {
 }
 
 interface OptionsProps {
-  immediate:boolean,
+  immediate?:boolean,
   successMsg?:string|React.ReactNode,
 }
 
 const initialState = {loading:false,data:undefined,status:false,error:undefined}
 
-function useApi<T=any>(axiosconfig:axiosProps,options:OptionsProps,dependencies:Array<any>=[]){
+function useApi<T=any>(axiosconfig:AxiosProps,options?:OptionsProps,dependencies:Array<any>=[]){
   const [output,setOutput]=useState<OutputProps<T>>(initialState)
-  const fetch = (overwriteConfig?:Partial<axiosProps>)=>{
+  const fetch = (overwriteConfig?:Partial<AxiosProps>)=>{
     setOutput({loading:true,data:undefined,status:false,error:undefined})
     return new Promise<T>((resolve,reject)=>{
       api({
+        method:'get',
         ...axiosconfig,
         ...overwriteConfig
       }).then((res:unknown)=>{
-        if(options.successMsg){
+        if(options?.successMsg){
           message.success(options.successMsg)
         }
         setOutput({loading:false,data:res as T,status:true,error:undefined})
@@ -49,7 +50,7 @@ function useApi<T=any>(axiosconfig:axiosProps,options:OptionsProps,dependencies:
   const reset = ()=>setOutput(initialState)
 
   useEffect(()=>{
-    if(options.immediate){
+    if(options?.immediate){
       fetch()
     }
   },dependencies)

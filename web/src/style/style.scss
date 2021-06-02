@@ -1,0 +1,55 @@
+$primary-color: #597ef7 !default;
+
+.blog-header {
+  background: $primary-color;
+}
+
+.blog-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.blog-title-item {
+  cursor: pointer;
+}
+
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: url('../assets/background.svg');
+  .login-box {
+    height: 300px;
+  }
+  .ant-btn-background-ghost{
+    margin-top: 16px;
+    color: $primary-color;
+    border-color: $primary-color;
+    font-weight: 600;
+    border-width: 2px;
+    &:hover{
+      color: #434343;
+      border-color: #434343;
+    }
+  }
+}
+
+.blog-preview-container {
+  margin: 24px 36px
+}
+
+.blog-page {
+  margin: 24px 36px;
+  background: #fff;
+  .blog-page-title {
+    text-align: center;
+    font-size: 36px;
+    margin: 8px 0;
+  }
+
+}
+
+@import '../components/previewCard/style';
+@import '../components/input/style';
