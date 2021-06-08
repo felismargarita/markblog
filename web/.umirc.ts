@@ -7,6 +7,8 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
+  base:'/blog/',
+  publicPath:'/blog/',
   proxy:{
     '/api': {
       target: 'http://localhost:8080',
