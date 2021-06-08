@@ -11,6 +11,7 @@ public class AdviceController extends BaseController {
 
     @ExceptionHandler(RuntimeException.class)
     public ResResult RuntimeExceptionHandler(RuntimeException runtimeException){
+        runtimeException.printStackTrace();
         return error(runtimeException.getMessage());
     }
 }

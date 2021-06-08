@@ -18,11 +18,6 @@ import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * @author: fangjianqi
- * @description: shiro配置类
- * @date: 2017/10/24 10:10
- */
 @Configuration
 public class ShiroConfiguration {
     /**
@@ -48,6 +43,9 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/user/logout", "anon");
         filterChainDefinitionMap.put("/blog/paging", "anon");
         filterChainDefinitionMap.put("/blog/getById", "anon");
+        filterChainDefinitionMap.put("/blog/all", "anon");
+        filterChainDefinitionMap.put("/avatar/read", "anon");
+        filterChainDefinitionMap.put("/tag/**", "anon");
         filterChainDefinitionMap.put("/error", "anon");
         filterChainDefinitionMap.put("/**", "authc");
 

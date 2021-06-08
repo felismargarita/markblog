@@ -17,6 +17,7 @@ $grey-13: #000000 !default;
 //滚动条样式
 *::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
 *::-webkit-scrollbar-thumb {
   background: $grey-6;
@@ -27,21 +28,30 @@ $grey-13: #000000 !default;
   scrollbar-color: #e5e5e5 #f7f7f9; /* 滑块颜色  滚动条背景颜色 */
   scrollbar-width: thin; /* 滚动条宽度有三种：thin、auto、none */
 }
-.blog-header {
-  background: $primary-color;
-}
 
 .blog-title {
   display: flex;
   justify-content: space-between;
 }
 
-.blog-title-item {
-  cursor: pointer;
+.blog-content {
+  background: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.blog-content-list {
+  width: 800px;
 }
 
-.blog-content {
-  background: rgb(204, 232, 207);
+.blog-pagination {
+  text-align: center;
+  margin-bottom: 16px;
+  cursor: pointer;
+  &:hover {
+    color: $primary-color;
+    transition: all .3s;
+  }
 }
 
 .login-page {
@@ -53,6 +63,11 @@ $grey-13: #000000 !default;
   background: url('../assets/background.svg');
   .login-box {
     height: 300px;
+    .login-box-title {
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
   }
   .ant-btn-background-ghost{
     margin-top: 16px;
@@ -68,19 +83,24 @@ $grey-13: #000000 !default;
 }
 
 .blog-preview-container {
-  margin: 24px 36px
+  margin: 24px 24px;
 }
 
 .blog-page {
-  margin: 24px 36px;
-  background: inherit;
+  padding: 24px 36px;
+  background: url('../assets/background.svg');
   .blog-page-title {
     text-align: center;
-    font-size: 24px;
-    margin: 8px 0;
+    font-size: 28px;
+    margin: 8px 0 32px 0;
   }
-
 }
 
+
+@import '../components/cover/style';
+@import '../components/header/style';
 @import '../components/previewCard/style';
 @import '../components/input/style';
+@import '../components/info/style';
+@import '../components/loadMore/style';
+@import '../components/avatar/style';

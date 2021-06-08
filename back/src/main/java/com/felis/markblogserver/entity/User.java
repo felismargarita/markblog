@@ -19,7 +19,7 @@ import java.util.Date;
 @TableName("t_user")
 public class User {
     @TableId(value = "id",type = IdType.AUTO)
-    private Long id;
+    private Integer id;
 
     @NotNull(message = "用户名必填",groups = {Add.class,Update.class})
     @StringLength(min = 1,max=256,message = "用户名长度不符合要求",groups = {Add.class, Update.class})

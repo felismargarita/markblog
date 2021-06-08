@@ -1,11 +1,13 @@
 export interface IPagination {
   current:number
-  pageSize:number
+  size:number
 }
 
 export interface IPaginationData<T=any> {
   total:number
   records:T[]
+  current:number
+  pages:number
 }
 
 export interface IBlog {
@@ -16,4 +18,5 @@ export interface IBlog {
   updatedTime:string
   createdBy:string
   updatedBy:string
+  tags:string[]
 }

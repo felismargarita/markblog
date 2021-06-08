@@ -8,3 +8,7 @@ declare module '*.svg' {
   const url: string;
   export default url;
 }
+
+declare module 'react-syntax-highlighter'
+
+declare module 'react-syntax-highlighter/dist/esm/styles/prism'

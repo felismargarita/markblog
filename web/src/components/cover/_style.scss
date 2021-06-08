@@ -1,0 +1,19 @@
+.blog-cover {
+  background:url('../assets/cover.svg');
+  background-repeat:no-repeat;
+  background-color: #fff;
+  background-size: cover;
+  height: 450px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.blog-cover-main {
+  font-size: 36px;
+}
+
+.blog-cover-secondary {
+  font-size: 24px;
+}

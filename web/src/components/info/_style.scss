@@ -1,0 +1,108 @@
+.blog-info {
+  min-width: 300px;
+  border-radius: 4px;
+  background-color: #fff;
+  margin: 24px 12px;
+  padding: 16px;
+  position: sticky;
+  top: 60px;
+  flex-grow: 0;
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
+  .blog-info-avatar {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+  }
+  .blog-info-title {
+    font-size: 16px;
+    text-align: center;
+    margin: 8px 0;
+  }
+  .blog-info-statistic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .blog-info-statistic-item {
+      width: 80px;
+      .blog-info-statistic-count {
+        text-align: center;
+        font-size: 18px;
+      }
+      .blog-info-statistic-tag {
+        text-align: center;
+      }
+    }
+    .blog-info-statistic-divider {
+      border-right: 1px solid $grey-9; 
+      height: 40px;
+      margin: 0 16px;
+    }
+  }
+  .blog-info-horizental-divider {
+    width: 100%;
+    margin: 24px 0px;
+    border-top: 1px solid $grey-5;
+  }
+  .blog-info-category {
+    color: $grey-8;
+    font-size: 16px;
+    line-height: 16px;
+    margin: 16px 0;
+  }
+  .blog-info-category-info {
+    .blog-info-category-card {
+      box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      height: 48px;
+      margin: 8px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.3s;
+      &:hover {
+        color: $primary-color;
+        margin: 8px -4px;
+        transition: all 0.3s;
+      }
+      .blog-info-category-name {
+        font-size: 16px;
+        padding-left: 16px;
+      }
+      .blog-info-category-count {
+        margin-right: 16px;
+        height: 28px;
+        width: 28px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $grey-2;
+      }
+    }
+  }
+  .blog-info-tag-title {
+    color: $grey-8;
+    font-size: 16px;
+    line-height: 16px;
+    margin: 16px 0;
+  }
+  .blog-info-tags {
+    display: flex;
+    .blog-info-tag {
+      min-width: 24px;
+      border-radius: 4px;
+      margin: 4px;
+      padding: 0px 4px;
+      color: $grey-2;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all .3s;
+      transform: scale(1);
+      &:hover {
+        transform: scale(1.05);
+        transition: all .3s;
+      }
+    }
+  }
+}

@@ -2,6 +2,7 @@ import {Form,Button, message} from 'antd'
 import Input from '@/components/input/Input'
 import useApi from '@/hooks/useApi'
 import {history} from 'umi'
+import sessionUtils from '@/utils/sessionUtils'
 const {Item} = Form
 export default ()=>{
   const [form] = Form.useForm()
@@ -10,6 +11,7 @@ export default ()=>{
   const onLogin = async ()=>{
     const values =await form.validateFields()
     await loginAPI.fetch({data:values})
+    sessionUtils.login()
     message.success('登陆成功')
     history.push('/center')
   }
@@ -17,6 +19,7 @@ export default ()=>{
     <div className="login-page">
       <div className="login-box">
         <Form form={form}>
+          <div className="login-box-title">博客控制台</div>
           <Item name="username" rules={[{required:true,message:'请输入用户名'}]}>
             <Input placeholder="请输入用户名"/>
           </Item>

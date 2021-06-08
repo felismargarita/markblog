@@ -1,0 +1,25 @@
+.blog-header-wrapper {
+  height: 48px;
+}
+
+.blog-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 48px;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  padding: 0 48px;
+  .blog-title-item {
+    font-size: 18px;
+    color: $grey-10;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+}

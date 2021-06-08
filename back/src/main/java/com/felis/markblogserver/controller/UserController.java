@@ -5,10 +5,8 @@ import com.felis.markblogserver.entity.User;
 import com.felis.markblogserver.service.IUserService;
 import org.apache.shiro.authc.AuthenticationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/user")
@@ -31,6 +29,17 @@ public class UserController extends BaseController {
     @PostMapping("/logout")
     public ResResult logout(){
         userService.logout();
+        return success();
+    }
+
+    @PutMapping("/changePassword")
+    public ResResult changePassword(String password){
+        if(password.length()<9){
+            return error("密码至少8位");
+        }
+        User user = userService.getUser(getUsername());
+        user.setPassword(password.trim());
+        userService.changePassword(user);
         return success();
     }
 }

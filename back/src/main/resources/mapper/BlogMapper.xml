@@ -32,7 +32,7 @@
         order by a.id desc
     </select>
 
-    <select id="getById" parameterType="long" resultMap="blogMap">
+    <select id="getById" parameterType="int" resultMap="blogMap">
         <include refid="queryBlog"/>
         and a.id = #{id}
     </select>

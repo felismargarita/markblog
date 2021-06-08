@@ -12,5 +12,5 @@ public interface BlogDao extends BaseMapper<Blog> {
 
     IPage<Blog> getPaging(Page<Blog> page, @Param("p") Blog blog);
 
-    Blog getById(Long id);
+    Blog getById(Integer id);
 }

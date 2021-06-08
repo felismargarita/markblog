@@ -29,4 +29,5 @@ public class BaseController {
         return SecurityUtils.getSubject().getPrincipal().toString();
     }
 
+
 }

@@ -1,6 +1,9 @@
 import { defineConfig } from 'umi';
 
 export default defineConfig({
+  devServer:{
+    port:8001
+  },
   nodeModulesTransform: {
     type: 'none',
   },
@@ -11,6 +14,7 @@ export default defineConfig({
       changeOrigin: true
     }
   },
+  title:'个人博客',
   locale:{
     default:'zh-CN',
     antd:true
@@ -18,24 +22,40 @@ export default defineConfig({
   sass: {
   },
   routes: [
-    { path: '/', component: '@/pages/index' },
-    { path:'/blog',component:'@/pages/blog'},
-    { path:'/login',component:'@/pages/login' },
+    { path:'/login',component:'@/pages/Login' },
     { 
       path:'/center',
-      component:'@/pages/center',
+      component:'@/pages/Center',
+      wrappers:['@/wrappers/Auth'],
       routes:[
         {
           path:'manage',
-          component:'@/pages/manage'
+          component:'@/pages/Manage'
         },
         {
           path:'paper',
-          component:'@/pages/paper'
+          component:'@/pages/Paper'
+        },
+        {
+          path:'userinfo',
+          component:'@/pages/UserInfo'
         }
       ]
     },
-    
+    { 
+      path: '/', 
+      component: '@/pages/Index',
+      routes:[
+        {
+          exact:true,
+          path:'blog',
+          component:'@/pages/Blog'
+        },
+        {
+          component: '@/pages/BlogList',
+        },
+      ]
+    },
   ],
   hash:true,
   fastRefresh: {},

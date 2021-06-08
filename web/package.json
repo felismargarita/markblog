@@ -21,13 +21,16 @@
   },
   "dependencies": {
     "@ant-design/pro-layout": "^6.5.0",
+    "@types/lodash": "^4.14.170",
     "@umijs/plugin-sass": "^1.1.1",
     "@umijs/preset-react": "1.x",
     "antd": "^4.16.1",
     "axios": "^0.21.1",
+    "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "node-sass": "4.14.1",
     "react-markdown": "^6.0.2",
+    "react-syntax-highlighter": "^15.4.3",
     "umi": "^3.4.23"
   },
   "devDependencies": {

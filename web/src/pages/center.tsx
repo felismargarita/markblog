@@ -9,11 +9,12 @@ const center:React.FC = (props)=>{
     <Layout>
       <Sider
         width={160}
-        style={{height:'100vh'}}>
+        style={{minHeight:'100vh'}}>
         <Menu theme="dark">
           <Item onClick={()=>history.push('/')}>首页</Item>
           <Item onClick={()=>history.push('/center/manage')}>文章管理</Item>
           <Item onClick={()=>history.push('/center/paper')}>创作中心</Item>
+          <Item onClick={()=>history.push('/center/userinfo')}>个人信息</Item>
         </Menu>
       </Sider>
       <Content style={{padding:8}}>

@@ -41,13 +41,18 @@ public class BlogController extends BaseController {
     }
 
     @DeleteMapping("/delete")
-    public ResResult update(Long id){
+    public ResResult update(Integer id){
         blogService.delete(id);
         return success();
     }
 
     @GetMapping("/getById")
-    public ResResult getById(Long id){
+    public ResResult getById(Integer id){
         return  success(blogService.getById(id));
+    }
+
+    @GetMapping("/all")
+    public ResResult getAll(){
+        return success(blogService.getAllBlogs());
     }
 }

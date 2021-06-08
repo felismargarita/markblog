@@ -3,7 +3,7 @@ import useApi from '@/hooks/useApi'
 import React from 'react'
 import {message, Spin} from 'antd'
 import {IBlog} from '@/types/CommonTypes'
-import Markdown from 'react-markdown'
+import Markdown from '@/components/Markdown'
 import {history} from 'umi'
 
 const blog:React.FC<any> = (props)=>{
@@ -12,7 +12,6 @@ const blog:React.FC<any> = (props)=>{
     history.push('/')
   }
   const blogAPI = useApi<IBlog>({url:'/blog/getById',params:{id}},{immediate:true},[id])
-
   return (
     <Spin spinning={blogAPI.loading}>
       <div className="blog-page">

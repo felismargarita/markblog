@@ -1,8 +1,9 @@
 import {useEffect} from 'react'
-import ReactMarkdown from 'react-markdown'
+import Markdown from '@/components/Markdown'
 import {Input,Row,Col, Space, Button,Form, message} from 'antd'
 import useApi from '@/hooks/useApi'
 import {IBlog} from '@/types/CommonTypes'
+import TagSelect from '@/components/TagSelect'
 
 const paper:React.FC<any> = (props)=>{
   const id = props?.location?.query?.id //文章ID
@@ -14,8 +15,8 @@ const paper:React.FC<any> = (props)=>{
   useEffect(()=>{
     if(id){
       blogAPI.fetch().then(blog=>{
-        const {title,content} = blog
-        form.setFieldsValue({title,content})
+        const {title,content,tags} = blog
+        form.setFieldsValue({title,content,tags})
       })
     }
   },[id])
@@ -38,8 +39,11 @@ const paper:React.FC<any> = (props)=>{
       <Form form={form}>
         <Row style={{marginBottom:4}} gutter={8}>
             <Col span={12}>
-              <Form.Item name="title">
+              <Form.Item name="title" label="标题">
                 <Input placeholder="请输入标题..."/>
+              </Form.Item>
+              <Form.Item name="tags" label="标签">
+                <TagSelect/>
               </Form.Item>
             </Col>
             <Col span={12}>
@@ -52,7 +56,7 @@ const paper:React.FC<any> = (props)=>{
           <Row gutter={8}>
             <Col span={12}>
               <Form.Item name="content">
-                <Input.TextArea/>
+                <Input.TextArea style={{height:600}}/>
               </Form.Item>
             </Col>
             <Col span={12}>
@@ -60,9 +64,9 @@ const paper:React.FC<any> = (props)=>{
                 <Form.Item noStyle shouldUpdate>
                   {
                     ()=>(
-                      <ReactMarkdown>
+                      <Markdown>
                       {form.getFieldValue('content')}
-                    </ReactMarkdown>
+                    </Markdown>
                     )
                   }
                 </Form.Item>

@@ -1,47 +1,20 @@
 import {Layout} from 'antd'
 import '@/style/style.scss'
-import {history} from 'umi'
-import useApi from '@/hooks/useApi'
-import usePagination from '@/hooks/usePagination'
-import PreviewCard from '@/components/previewCard/PreviewCard'
-import {IBlog,IPaginationData} from '@/types/CommonTypes'
-import {Spin} from 'antd'
+import {BackTop} from 'antd'
+import Header from '@/components/header/header'
 
-const {Header,Content} = Layout
-export default function IndexPage() {
-  const goLogin = ()=> history.push('/login')
-  const {pagination,next,prev,init} = usePagination()
-  const pageBlogAPI = useApi<IPaginationData<IBlog>>({url:'/blog/paging',method:'POST',data:{pagination}},{immediate:true},[pagination])
+const {Content} = Layout
+const index:React.FC = ({children}) => {
+
   return (
     <div>
+      <BackTop/>
       <Layout>
-        <Header className="blog-header">
-          <div className="blog-title">
-            <div className="blog-title-item">Felis的博客</div>
-            <div className="blog-title-item" onClick={goLogin}>登陆/注册</div>
-          </div>
-        </Header>
-        <Content className="blog-content">
-          <Spin spinning={pageBlogAPI.loading}>
-            {
-              pageBlogAPI.data?.records.map(b=>(
-                <div className="blog-preview-container">
-                  <PreviewCard 
-                    key={b.id} 
-                    {...b}
-                    onClickMore={()=>{
-                      history.push({
-                        pathname:'/blog',
-                        query:{id:b.id}
-                      })
-                    }}
-                  />
-                </div>
-              ))
-            }
-          </Spin>
-        </Content>
+        <Header/>
+        <Content>{children}</Content>
       </Layout>
     </div>
   );
 }
+
+export default index
