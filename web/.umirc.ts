@@ -10,7 +10,7 @@ export default defineConfig({
   base:'/blog/',
   publicPath:'/blog/',
   proxy:{
-    '/api': {
+    '/blogapi': {
       target: 'http://localhost:8080',
       pathRewrite: { '^/api': '' },
       changeOrigin: true

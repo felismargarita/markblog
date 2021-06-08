@@ -3,7 +3,7 @@ import {message} from 'antd'
 import sessionUtils from '../utils/sessionUtils'
 import {history} from 'umi'
 const service = axios.create({
-  baseURL: '/api', // api的base_url,
+  baseURL: '/blogapi', // api的base_url,
   withCredentials:true,
 })
 

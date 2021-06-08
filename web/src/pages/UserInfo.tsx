@@ -37,11 +37,11 @@ export default ()=>{
               }
             }
           }}
-          action="/api/avatar/upload">
+          action="/blogapi/avatar/upload">
             {
               uploading
               ? <LoadingOutlined/>
-              : <img src={"/api/avatar/read"} className="logo-upload-img" alt="avatar" style={{ width: '100%' }} />
+              : <img src={"/blogapi/avatar/read"} className="logo-upload-img" alt="avatar" style={{ width: '100%' }} />
             }
         </Upload>
       </Card>

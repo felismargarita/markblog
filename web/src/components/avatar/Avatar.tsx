@@ -12,7 +12,7 @@ const Avatar:React.FC<AvatarProps> = ({size,style})=>{
 
   return (
     <div className="blog-avatar" style={{...sizeStyle,...style}}>
-      <img alt="avatar" className="blog-avatar-img"  src="/api/avatar/read"/>
+      <img alt="avatar" className="blog-avatar-img"  src="/blogapi/avatar/read"/>
     </div>
   )
 }
