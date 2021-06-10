@@ -1,6 +1,5 @@
 .preview-card {
   position: relative;
-  height: 90px;
   overflow: hidden;
   padding: 16px;
   border-radius: 4px;
@@ -41,17 +40,15 @@
 
   }
   .preview-card-footer {
-    position: absolute;
     background: #fff;
     opacity: 0.95;
     width: 100%;
-    bottom: 0;
-    height: 32px;
-    line-height: 24px;
     display: flex;
     color: $grey-8;
+    margin-bottom: -16px;
     .preview-card-time {
-      margin: 4px 12px;
+      margin: 4px 4px;
+      width: 120px;
       font-size: 16px;
     }
     .preview-card-tags {

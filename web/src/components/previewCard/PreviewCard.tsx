@@ -20,7 +20,7 @@ const PreviewCard:React.FC<PreviewCardProps> = ({content,title,tags,createdTime,
       <span className="preview-card-title">{title}</span>
       <div className="preview-card-footer">
         <div className="preview-card-time">
-          <ClockCircleFilled style={{marginRight:4}}/>发布时间:{moment(createdTime).format('YYYY-MM-DD')}
+          <ClockCircleFilled style={{marginRight:4}}/>{moment(createdTime).format('YYYY-MM-DD')}
         </div>
         <div className="preview-card-tags">
           {

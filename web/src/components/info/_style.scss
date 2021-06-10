@@ -99,6 +99,7 @@
   }
   .blog-info-tags {
     display: flex;
+    flex-wrap: wrap;
     .blog-info-tag {
       min-width: 24px;
       border-radius: 4px;
