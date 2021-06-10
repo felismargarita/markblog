@@ -28,4 +28,7 @@ public class Blog {
 
     @TableField(exist = false)
     private List<String> tags;
+
+    @TableField(exist = false)
+    private String tag;
 }

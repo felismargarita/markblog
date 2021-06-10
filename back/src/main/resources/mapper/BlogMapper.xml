@@ -29,6 +29,12 @@
 
     <select id="getPaging" resultMap="blogMap">
         <include refid="queryBlog"/>
+        <if test="p.tag !=null and p.tag !=''">
+            and exists (
+            select 1 from t_blog_tag x inner join t_tag y on x.tag_id = y.id
+            where y.name = #{p.tag} and x.blog_id = a.id
+            )
+        </if>
         order by a.id desc
     </select>
 

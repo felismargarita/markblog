@@ -1,20 +1,17 @@
-import {Layout} from 'antd'
-import '@/style/style.scss'
-import {BackTop} from 'antd'
-import Header from '@/components/header/header'
-
-const {Content} = Layout
-const index:React.FC = ({children}) => {
+import Info from '@/components/info/Info'
+import Cover from '@/components/cover/Cover'
+import BlogList from './BlogList'
+export default ()=>{
 
   return (
-    <div>
-      <BackTop/>
-      <Layout>
-        <Header/>
-        <Content>{children}</Content>
-      </Layout>
+    <>
+    <Cover/>
+    <div className="blog-content">
+      <BlogList/>
+      <div>
+        <Info/>
+      </div>
     </div>
-  );
+  </>
+  )
 }
-
-export default index

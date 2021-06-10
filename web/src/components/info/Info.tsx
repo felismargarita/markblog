@@ -3,13 +3,18 @@ import Avatar from '../avatar/Avatar'
 import useApi from '@/hooks/useApi'
 import {IBlog} from '@/types/CommonTypes'
 import _ from 'lodash'
-import {LayoutFilled,TagFilled} from '@ant-design/icons'
+import {LayoutFilled,TagFilled,MailFilled} from '@ant-design/icons'
 import {randomColor,colors} from '@/utils/colors'
+import {history} from 'umi'
 interface ITagStatistic {
   tag:string
   count:number
 }
 
+const goBlogTag = (tag:string)=>history.push({
+  pathname:'/blogtag',
+  query:{tag}
+})
 const shuffledColors = _.shuffle(colors)
 
 const calTags = (tags?:string[])=>{
@@ -25,11 +30,12 @@ const calTags = (tags?:string[])=>{
       return [...pre,{tag:curr,count:1}]
     }
   },[])
-  if(list.length>6){
-    return list.slice(0,6)
+  if(list.length>5){
+    return _.sortBy(list,'count').reverse().slice(0,5)
   }
-  return list
+  return _.sortBy(list,'count').reverse()
 }
+
 
 export default ()=>{
 
@@ -59,11 +65,16 @@ export default ()=>{
         </div>
       </div>
       <div className="blog-info-horizental-divider"></div>
+      <div className="blog-info-mail"><MailFilled/> Contact Me</div>
+      <div className="blog-info-address">
+        felismargarita@hotmail.com
+      </div>
+      <div className="blog-info-horizental-divider"></div>
       <div className="blog-info-category"><LayoutFilled/> Category</div>
       <div className="blog-info-category-info">
         {
           calTags(tags).map((tagInfo,index)=>(
-            <div key={tagInfo.tag} className="blog-info-category-card">
+            <div key={tagInfo.tag} onClick={()=>goBlogTag(tagInfo.tag)} className="blog-info-category-card">
               <div className="blog-info-category-name">{tagInfo.tag}</div>
               <div className="blog-info-category-count" style={{background:shuffledColors[index]}}>{tagInfo.count}</div>
             </div>
@@ -74,7 +85,7 @@ export default ()=>{
       <div className="blog-info-tag-title"><TagFilled/> Tag</div>
       <div className="blog-info-tags">
         {
-          _.uniq(tags).map(tag=><div key={tag}  style={{background:randomColor()}} className="blog-info-tag">{tag}</div>)
+          _.uniq(tags).map(tag=><div key={tag} onClick={()=>goBlogTag(tag)}  style={{background:randomColor()}} className="blog-info-tag">{tag}</div>)
         }
       </div>
     </div>

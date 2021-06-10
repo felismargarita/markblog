@@ -2,10 +2,15 @@ import React from 'react'
 import {IBlog} from '@/types/CommonTypes'
 import moment from 'moment'
 import {ClockCircleFilled,TagFilled} from '@ant-design/icons'
+import {history} from 'umi'
 
 interface PreviewCardProps extends IBlog {
   onClickMore:()=>void
 }
+const goBlogTag = (tag:string)=>history.push({
+  pathname:'/blogtag',
+  query:{tag}
+})
 
 const PreviewCard:React.FC<PreviewCardProps> = ({content,title,tags,createdTime,onClickMore,updatedTime})=>{
 
@@ -24,7 +29,10 @@ const PreviewCard:React.FC<PreviewCardProps> = ({content,title,tags,createdTime,
             <>
             <TagFilled/>
             {
-              tags.map(tag=><span className="preview-card-tag" key={tag}>{tag}</span>)
+              tags.map(tag=><span className="preview-card-tag" key={tag} onClick={(e)=>{
+                e.stopPropagation()
+                goBlogTag(tag)
+              }}>{tag}</span>)
             }
             </>
             :null

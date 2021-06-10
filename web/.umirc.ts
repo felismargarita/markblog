@@ -11,8 +11,8 @@ export default defineConfig({
   publicPath:'/blog/',
   proxy:{
     '/blogapi': {
-      target: 'http://localhost:8080',
-      pathRewrite: { '^/api': '' },
+      target: 'http://localhost:4566',
+      pathRewrite: { '^/blogapi': '' },
       changeOrigin: true
     }
   },
@@ -46,7 +46,7 @@ export default defineConfig({
     },
     { 
       path: '/', 
-      component: '@/pages/Index',
+      component: '@/pages/Layout',
       routes:[
         {
           exact:true,
@@ -54,8 +54,14 @@ export default defineConfig({
           component:'@/pages/Blog'
         },
         {
-          component: '@/pages/BlogList',
+          exact:true,
+          path:'blogtag',
+          component:'@/pages/BlogTagList'
         },
+        {
+          component: '@/pages/Index',
+        },
+        
       ]
     },
   ],

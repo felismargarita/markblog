@@ -19,6 +19,9 @@ public class BlogController extends BaseController {
 
     @PostMapping("/paging")
     public ResResult getPaging(@RequestBody PageParam<Blog> pageParam){
+        if(pageParam.getParams() == null){
+            pageParam.setParams(new Blog());
+        }
         return success(blogService.getPaging(pageParam));
     }
 

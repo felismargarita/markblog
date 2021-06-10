@@ -43,8 +43,8 @@ public class AvatarController extends BaseController {
 
     @GetMapping("/read")
     public void getAvatar(HttpServletResponse response) throws IOException{
-        String username = getUsername();
-        User user = userService.getUser(username);
+//        String username = getUsername();
+        User user = userService.getUser("administrator");
         Avatar avatar = avatarService.getAvatar(user.getId());
         //读取文件
         response.setHeader("Pragma", "no-cache");
