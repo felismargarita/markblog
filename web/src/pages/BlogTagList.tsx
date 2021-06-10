@@ -12,6 +12,7 @@ const BlogTagList:React.FC<any> = (props)=>{
   const allTagsAPI = useApi<string[]>({url:'/tag/all'},{immediate:true})
   return (
     <div className="blog-tag-list-page">
+      <div style={{flexGrow:1,maxWidth:800}}>
       <div className="blog-tag-list-tags">
         {
           allTagsAPI
@@ -26,6 +27,7 @@ const BlogTagList:React.FC<any> = (props)=>{
         }
       </div>
       <BlogList tag={props.location?.query?.tag}/>
+      </div>
     </div>
   )
 }
