@@ -1,5 +1,6 @@
 .blog-info {
   min-width: 300px;
+  max-width: 360px;
   border-radius: 4px;
   background-color: #fff;
   margin: 24px 12px;
@@ -33,7 +34,7 @@
       }
     }
     .blog-info-statistic-divider {
-      border-right: 1px solid $grey-9; 
+      border-right: 1px solid $grey-9;
       height: 40px;
       margin: 0 16px;
     }
