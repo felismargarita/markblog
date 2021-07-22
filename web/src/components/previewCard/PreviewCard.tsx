@@ -1,6 +1,6 @@
 import React from 'react'
 import {IBlog} from '@/types/CommonTypes'
-import moment from 'moment'
+import dayjs from 'dayjs'
 import {ClockCircleFilled,TagFilled} from '@ant-design/icons'
 import {history} from 'umi'
 
@@ -20,7 +20,7 @@ const PreviewCard:React.FC<PreviewCardProps> = ({content,title,tags,createdTime,
       <span className="preview-card-title">{title}</span>
       <div className="preview-card-footer">
         <div className="preview-card-time">
-          <ClockCircleFilled style={{marginRight:4}}/>{moment(createdTime).format('YYYY-MM-DD')}
+          <ClockCircleFilled style={{marginRight:4}}/>{dayjs(createdTime).format('YYYY-MM-DD')}
         </div>
         <div className="preview-card-tags">
           {

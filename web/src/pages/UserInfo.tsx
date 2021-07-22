@@ -19,7 +19,9 @@ export default ()=>{
       <Card title="logo编辑">
         <Upload
           listType="picture-card"
-          withCredentials={true}
+          headers={{
+            'x-auth-token':sessionStorage.getItem('token') || ''
+          }}
           showUploadList={false}
           onChange={info=>{
             const {response,status} = info.file
@@ -37,11 +39,11 @@ export default ()=>{
               }
             }
           }}
-          action="/blogapi/avatar/upload">
+          action="/api/blog/avatar/upload">
             {
               uploading
               ? <LoadingOutlined/>
-              : <img src={"/blogapi/avatar/read"} className="logo-upload-img" alt="avatar" style={{ width: '100%' }} />
+              : <img src={"/api/blog/avatar/read"} className="logo-upload-img" alt="avatar" style={{ width: '100%' }} />
             }
         </Upload>
       </Card>
@@ -50,8 +52,8 @@ export default ()=>{
           <Form.Item label="新的密码" name="password1" rules={[{required:true,message:'密码必填'}]}>
             <Input.Password/>
           </Form.Item>
-          <Form.Item label="确认密码" 
-            name="password2" 
+          <Form.Item label="确认密码"
+            name="password2"
             rules={[
               {required:true,message:'密码必填'},
               {min:8,message:'密码最少8位'},

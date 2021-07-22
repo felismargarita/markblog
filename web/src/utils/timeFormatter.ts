@@ -1,9 +1,9 @@
-import moment from 'moment'
+import dayjs from 'dayjs'
 
 export default (time:any)=>{
   if(!time){
     return ''
   }
-  return moment(time).format('YYYY-MM-DD HH:mm:ss')
+  return dayjs(time).format('YYYY-MM-DD HH:mm:ss')
 
 }

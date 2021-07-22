@@ -6,13 +6,13 @@ interface AvatarProps {
 
 const Avatar:React.FC<AvatarProps> = ({size,style})=>{
 
-  const sizeStyle:React.CSSProperties = size 
+  const sizeStyle:React.CSSProperties = size
   ? {width:size,height:size,borderRadius:size/2}
   : {}
 
   return (
     <div className="blog-avatar" style={{...sizeStyle,...style}}>
-      <img alt="avatar" className="blog-avatar-img"  src="/blogapi/avatar/read"/>
+      <img alt="avatar" className="blog-avatar-img"  src="/api/blog/avatar/read"/>
     </div>
   )
 }

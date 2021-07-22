@@ -1,9 +1,8 @@
-import axios, { AxiosResponse } from 'axios'
+import axios from 'axios'
 import {message} from 'antd'
 import sessionUtils from '../utils/sessionUtils'
-import {history} from 'umi'
 const service = axios.create({
-  baseURL: '/blogapi', // api的base_url,
+  baseURL: '/api/blog', // api的base_url,
   withCredentials:true,
 })
 
@@ -11,6 +10,10 @@ const service = axios.create({
 // request拦截器
 service.interceptors.request.use(config => {
   config.withCredentials=true;
+  const token = sessionStorage.getItem('token')
+  if(token){
+    config.headers['x-auth-token']= token
+  }
   return config
 }, error => {
   return Promise.reject(error)
@@ -19,6 +22,10 @@ service.interceptors.request.use(config => {
 // response拦截器
 service.interceptors.response.use(
   (response) => {
+    const token=response.headers['x-auth-token']
+    if(token){
+        sessionStorage.setItem('token',token)
+    }
     const res = response.data;
     if (res.code === 200) {
       return res.info;
